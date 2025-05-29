@@ -1,0 +1,19 @@
+backend:
+  name: github
+  repo: chi-1020/eatyourbreakfast
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "posts"
+    label: "部落格文章"
+    folder: "blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "標題", name: "title", widget: "string"}
+      - {label: "分類", name: "category", widget: "select", options: ["早餐店的蝦事", "創業情緒筆記", "創業沒人教你的事"]}
+      - {label: "日期", name: "date", widget: "datetime"}
+      - {label: "內文", name: "body", widget: "markdown"}

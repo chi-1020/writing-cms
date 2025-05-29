@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>搜尋文章 | 我的寫作空間</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    const posts = [
+      {{title: "那天客人點了 10 顆蛋餅", url: "post-breakfast-1.html"}},
+      {{title: "為什麼我永遠找不到正職", url: "post-breakfast-2.html"}},
+      {{title: "決定開店前的失眠夜", url: "post-emotion-1.html"}},
+      {{title: "當業績不如預期時，我怎麼自我對話", url: "post-emotion-2.html"}},
+      {{title: "為什麼我要學會看報表", url: "post-truth-1.html"}},
+      {{title: "第一次報稅竟然漏了這個", url: "post-truth-2.html"}},
+    ];
+
+    function searchPosts() {
+      const keyword = document.getElementById("keyword").value.trim().toLowerCase();
+      const result = document.getElementById("result");
+      result.innerHTML = "";
+      if (!keyword) return;
+      const matched = posts.filter(p => p.title.toLowerCase().includes(keyword));
+      if (matched.length === 0) {
+        result.innerHTML = "<p>找不到相關文章。</p>";
+      } else {
+        result.innerHTML = matched.map(p => `<li><a href="${p.url}">${p.title}</a></li>`).join("");
+      }
+    }
+  </script>
+</head>
+<body>
+  <header><h1>全文搜尋</h1></header>
+  <main>
+    <p>請輸入關鍵字：</p>
+    <input type="text" id="keyword" oninput="searchPosts()" placeholder="例如：焦慮、蛋餅、報表…" />
+    <ul id="result"></ul>
+    <p><a href="index.html">← 回首頁</a></p>
+  </main>
+  <footer><p>&copy; 2025 我的寫作空間</p></footer>
+</body>
+</html>
